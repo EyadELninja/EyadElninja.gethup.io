@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توقع نتيجة المباراة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        form {
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>توقع نتيجة مباراة الأهلي والزمالك</h1>
+    <form id="predictionForm">
+        <label for="forecasterName">الاسم:</label>
+        <input type="text" id="forecasterName" required>
+        <label for="prediction">التوقع:</label>
+        <input type="text" id="prediction" required>
+        <label for="team">الفريق المدعوم:</label>
+        <select id="team">
+            <option value="Al-Ahly">الأهلي</option>
+            <option value="Zamalek">الزمالك</option>
+        </select>
+        <button type="submit">توقع المباراة</button>
+    </form>
+
+    <h2>التوقعات</h2>
+    <ul id="predictionsList"></ul>
+
+    <script>
+        const form = document.getElementById('predictionForm');
+        const predictionsList = document.getElementById('predictionsList');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const forecasterName = document.getElementById('forecasterName').value;
+            const prediction = document.getElementById('prediction').value;
+            const team = document.getElementById('team').value;
+
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>${forecasterName}</strong> (${team}): ${prediction}`;
+            predictionsList.appendChild(listItem);
+
+            // Send prediction to Google Sheets (Implement Google Sheets API here)
+
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>
